@@ -1,5 +1,5 @@
 <?php
-require_once "../Modelos/conexion.php";
+require_once "../../Modelos/conexion.php";
 $cvn = new conectar();
 $conexion = $cvn ->conexion();
 $sql = "SELECT
