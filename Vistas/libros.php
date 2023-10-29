@@ -34,7 +34,7 @@ session_start();
 						</select>
                     <p></p>
                     <span id="btnAgregaLibro" class="btn btn-primary">Agregar</span>
-                    <a href="../Controladores/Libros/AgregarLibro.php"></a>
+                    <a href=""></a>
                 </form>
             </div>
             <div class="col-sm-8">
@@ -52,7 +52,7 @@ session_start();
         $.ajax({
             type: "POST",
             data: "idLib=" + LibroID,
-            url: "../Controladores/Libros/obtenerLibro.php",
+            url: "/Controladores/Libros/obtenerLibro.php",
             success: function(l){
                 dato = jQuery.parseJSON(l);
                 $('#titulo_libro').val(dato['TituloLibro']);
