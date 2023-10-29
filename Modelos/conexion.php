@@ -4,7 +4,7 @@
         private $servidor = "localhost";
         private $usuario = "root";
         private $password = "";
-        private $db = "BibliotecaRS16007";
+        private $db = "bibliotecars16007";
 
         public function conexion(){
             $conexion = mysqli_connect(
