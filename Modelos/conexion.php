@@ -2,8 +2,8 @@
 
     class conectar{
         private $servidor = "localhost";
-        private $usuario = "admin";
-        private $password = "admin";
+        private $usuario = "root";
+        private $password = "";
         private $db = "BibliotecaRS16007";
 
         public function conexion(){
