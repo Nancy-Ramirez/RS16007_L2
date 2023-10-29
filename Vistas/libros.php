@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\sql_injection_subst;
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -28,8 +31,13 @@ session_start();
                     <label>Autor</label>
                     <select class="form-control input-sm" name="id_autor" id="id_autor">
 							<option value="A">Seleccione un Autor</option>
-							<?php while($clib=mysqli_fetch_row($result)): ?>
-								<option value="<?php echo $ver[0]?>"><?php echo $ver[1]?></option>
+							<?php 
+                            $sql ="SELECT AutorID, PrimerNombre, 
+                            PrimerApellido FROM autores";
+                            $result=mysqli_query($conexion,$sql);
+                            while ($ver = mysqli_fetch_row($result)):
+                            ?>
+								<option value="<?php echo $ver[0]?>"><?php echo $ver[1]. " " .$ver[2]?></option>
 							<?php endwhile; ?>
 						</select>
                     <p></p>
@@ -53,8 +61,9 @@ session_start();
             type: "POST",
             data: "idLib=" + LibroID,
             url: "/Controladores/Libros/obtenerLibro.php",
-            success: function(l){
-                dato = jQuery.parseJSON(l);
+            success: function(r){
+                dato = jQuery.parseJSON(r);
+                $('#LibroID').val(dato['LibroID']);
                 $('#titulo_libro').val(dato['TituloLibro']);
                 $('#isbn').val(dato['ISBN']);
                 $('#stock').val(dato['Stock']);
@@ -69,17 +78,13 @@ $(document).ready(function() {
     $('#tablaLibroLoad').load("Libros/TablaLibros.php");
 
     $('#btnAgregaLibro').click(function() {
-        var formData = new FormData(document.getElementById("frmLibros"));
+        ("frmLibros");
 
+        datos=$('frmLibros').serialize();
         $.ajax({
             url: "../Controladores/Libros/AgregarLibro.php",
             type: "post",
-            dataType: "html",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-
+            data: datos,
             success: function(r) {
                     $('#frmLibros')[0].reset();
                     $('#tablaLibroLoad').load("Libros/TablaLibros.php");

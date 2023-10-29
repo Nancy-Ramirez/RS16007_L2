@@ -3,7 +3,6 @@
         public function ingresarLibro($datos){
             $cn = new conectar();
             $conexion = $cn -> conexion();
-            $datos = $_SESSION['UsuarioID'];
             $sql = "INSERT into libros (
                 LibroID,
                 TituloLibro,

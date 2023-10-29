@@ -6,9 +6,11 @@
     $obj = new libros();
 
     $datos = array(
-        $datos[0] = $_POST['TituloLibro'],
-        $datos[1] = $_POST['ISBN'],
-        $datos[2] = $_POST['Stock'],
-        $datos[3] = $_POST['AutorID'],
+        $datos[0] = $_POST['LibroID'],
+        $datos[1] = $_POST['TituloLibro'],
+        $datos[2] = $_POST['ISBN'],
+        $datos[3] = $_POST['Stock'],
+        $datos[4] = $_POST['AutorID'],
+
     );
     echo $obj -> ingresarLibro($datos);
