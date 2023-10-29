@@ -31,4 +31,28 @@
 
             return $aut[1]. " " .$aut[0];
         }
+
+        public function obtenDatosLibro($LibroID){
+            $cn = new conectar();
+            $conexion = $cn -> conexion();
+
+            $sql = "SELECT LibroID,
+                        TituloLibro,
+                        ISBN,
+                        Stock,
+                        AutorID
+                    FROM libros
+                    WHERE LibroID = '$LibroID'";
+            $result = mysqli_query($conexion, $sql);
+            $lib = mysqli_fetch_row($result);
+
+            $datos = array(
+                'LibroID' => $lib[0],
+                'TituloLibro' => $lib[1],
+                'ISBN' => $lib[2],
+                'Stock' => $lib[3],
+                'AutorID' => $lib[4]
+            );
+            return $datos;
+        }
     }

@@ -1,6 +1,32 @@
 <?php
 
 class usuarios{
+
+    public function registroUsuario($datos){
+
+        $cn = new conectar();
+        $conexion = $cn -> conexion();
+
+        $sql = "INSERT into usuarios (
+            UsuarioID,
+            NombreUsuario,
+            PrimerNombreAlumno,
+            SegundoNombreAlumno,
+            PrimerApellidoAlumno,
+            SegundoApellidoAlumno,
+            EmailAlumno,
+            ContraseñaAlumno)
+            values ('$datos[0]',
+					'$datos[1]',
+					'$datos[2]',
+					'$datos[3]'
+					'$datos[4]'
+					'$datos[5]'
+					'$datos[6]'
+					'$datos[7]'";
+            return mysqli_query($conexion, $sql);
+    }
+
     public function ingresar($datos){
         $cn = new conectar();
         $conexion = $cn->conexion();
@@ -10,7 +36,7 @@ class usuarios{
         $_SESSION['UsuarioID'] = self::traeId($datos);
 
         $sql = "SELECT * from usuarios
-                where UsuarioAlumno = '$datos[0]' and ContraseñaAlumno = '$contraseña'";
+                where NombreUsuario = '$datos[0]' and ContraseñaAlumno = '$contraseña'";
         $result = mysqli_query($conexion, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
@@ -26,7 +52,7 @@ class usuarios{
 
         $sql = "SELECT UsuarioID 
 					from usuarios 
-					where UsuarioAlumno='$datos[0]'
+					where NombreUsuario='$datos[0]'
 					and ContraseñaAlumno='$contraseña'";
 		$result = mysqli_query($conexion, $sql);
 

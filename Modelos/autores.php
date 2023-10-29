@@ -2,6 +2,12 @@
 
     class autores{
 
-            public function agregarAutor
+            public function agregarAutor($datos){
+                $cn = new conectar();
+                $conexion = $cn ->conexion();
+
+                $
+
+            }
 
     }
